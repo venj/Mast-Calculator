@@ -93,6 +93,7 @@
             this.MaximumLoadTextBox.Name = "MaximumLoadTextBox";
             this.MaximumLoadTextBox.Size = new System.Drawing.Size(185, 23);
             this.MaximumLoadTextBox.TabIndex = 5;
+            this.MaximumLoadTextBox.TextChanged += new System.EventHandler(this.MaximumLoadTextBox_TextChanged);
             // 
             // label3
             // 
@@ -111,6 +112,7 @@
             this.TotalHeightTextBox.Name = "TotalHeightTextBox";
             this.TotalHeightTextBox.Size = new System.Drawing.Size(185, 23);
             this.TotalHeightTextBox.TabIndex = 3;
+            this.TotalHeightTextBox.TextChanged += new System.EventHandler(this.TotalHeightTextBox_TextChanged);
             // 
             // label2
             // 
@@ -129,6 +131,8 @@
             this.InitialHeightTextBox.Name = "InitialHeightTextBox";
             this.InitialHeightTextBox.Size = new System.Drawing.Size(185, 23);
             this.InitialHeightTextBox.TabIndex = 1;
+            this.InitialHeightTextBox.TextChanged += new System.EventHandler(this.InitialHeightTextBox_TextChanged);
+            this.InitialHeightTextBox.Leave += new System.EventHandler(this.InitialHeightTextBox_Leave);
             // 
             // label1
             // 
@@ -258,6 +262,7 @@
             this.HeightDeltaTextBox.Name = "HeightDeltaTextBox";
             this.HeightDeltaTextBox.Size = new System.Drawing.Size(132, 23);
             this.HeightDeltaTextBox.TabIndex = 7;
+            this.HeightDeltaTextBox.TextChanged += new System.EventHandler(this.HeightDeltaTextBox_TextChanged);
             // 
             // label5
             // 
