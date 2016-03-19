@@ -85,6 +85,7 @@
             this.CalculateButton.TabIndex = 6;
             this.CalculateButton.Text = "Calculate";
             this.CalculateButton.UseVisualStyleBackColor = true;
+            this.CalculateButton.Click += new System.EventHandler(this.CalculateButton_Click);
             // 
             // MaximumLoadTextBox
             // 
@@ -94,6 +95,7 @@
             this.MaximumLoadTextBox.Size = new System.Drawing.Size(185, 23);
             this.MaximumLoadTextBox.TabIndex = 5;
             this.MaximumLoadTextBox.TextChanged += new System.EventHandler(this.MaximumLoadTextBox_TextChanged);
+            this.MaximumLoadTextBox.Leave += new System.EventHandler(this.MaximumLoadTextBox_Leave);
             // 
             // label3
             // 
@@ -113,6 +115,7 @@
             this.TotalHeightTextBox.Size = new System.Drawing.Size(185, 23);
             this.TotalHeightTextBox.TabIndex = 3;
             this.TotalHeightTextBox.TextChanged += new System.EventHandler(this.TotalHeightTextBox_TextChanged);
+            this.TotalHeightTextBox.Leave += new System.EventHandler(this.TotalHeightTextBox_Leave);
             // 
             // label2
             // 

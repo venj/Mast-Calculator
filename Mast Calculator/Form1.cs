@@ -14,20 +14,32 @@ namespace Mast_Calculator
 {
     public partial class Form1 : Form
     {
+        //--------------------------------
+        //
+        //       Form life cycle
+        //
+        //--------------------------------
+
         public Form1()
         {
             InitializeComponent();
             InitializeDataBase();
         }
 
-        private void InitializeDataBase()
-        {
-            var db = new DataProcess();
-        }
-
         private void Form1_Load(object sender, EventArgs e)
         {
             MinimumColumeComboBox.SelectedIndex = 0;
+        }
+
+        //--------------------------------
+        //
+        //       Helper methods
+        //
+        //--------------------------------
+
+        private void InitializeDataBase()
+        {
+            var db = new DataProcess();
         }
 
         private bool isValidInputText(string text, bool isFloatNumber)
@@ -44,11 +56,6 @@ namespace Mast_Calculator
             Regex regex = new Regex(pattern);
 
             return regex.IsMatch(text);
-        }
-
-        private void InitialHeightTextBox_TextChanged(object sender, EventArgs e)
-        {
-            changeTextBox((TextBox)sender, true);
         }
 
         private void changeTextBox(TextBox textBox, bool isFloat)
@@ -68,6 +75,31 @@ namespace Mast_Calculator
             }
         }
 
+        private void validateValueInTextBox(TextBox textBox, double preferedValue, string message)
+        {
+            var text = textBox.Text;
+            if (text.Length == 0)
+            {
+                return;
+            }
+            if (double.Parse(text) > preferedValue)
+            {
+                textBox.BackColor = Color.Red;
+                MessageBox.Show(message);
+            }
+        }
+        
+        //--------------------------------
+        //
+        //       Event Hanlders
+        //
+        //--------------------------------
+
+        private void InitialHeightTextBox_TextChanged(object sender, EventArgs e)
+        {
+            changeTextBox((TextBox)sender, true);
+        }
+        
         private void TotalHeightTextBox_TextChanged(object sender, EventArgs e)
         {
             changeTextBox((TextBox)sender, true);
@@ -75,7 +107,7 @@ namespace Mast_Calculator
 
         private void MaximumLoadTextBox_TextChanged(object sender, EventArgs e)
         {
-            changeTextBox((TextBox)sender, true);
+            changeTextBox((TextBox)sender, false);
         }
 
         private void HeightDeltaTextBox_TextChanged(object sender, EventArgs e)
@@ -85,13 +117,22 @@ namespace Mast_Calculator
 
         private void InitialHeightTextBox_Leave(object sender, EventArgs e)
         {
-            TextBox textBox = (TextBox)sender;
-            if (double.Parse(textBox.Text) > 4.0)
-            {
-                textBox.BackColor = Color.Red;
-                MessageBox.Show("Initial hight can not be larger than 4.0");
+            validateValueInTextBox((TextBox)sender, 4.0, "Initial hight can not be larger than 4.0");
+        }
 
-            }
+        private void TotalHeightTextBox_Leave(object sender, EventArgs e)
+        {
+            validateValueInTextBox((TextBox)sender, 30.0, "Total hight can not be larger than 30.0");
+        }
+
+        private void MaximumLoadTextBox_Leave(object sender, EventArgs e)
+        {
+            validateValueInTextBox((TextBox)sender, 300, "Total weight can not be larger than 300");
+        }
+
+        private void CalculateButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
