@@ -37,22 +37,22 @@
             this.InitialHeightTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.SingleRingRadioButton = new System.Windows.Forms.RadioButton();
+            this.DualRingRadioButton = new System.Windows.Forms.RadioButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.SameRadioButton = new System.Windows.Forms.RadioButton();
+            this.NotSameRadioButton = new System.Windows.Forms.RadioButton();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.OptimizeResultCheckBox = new System.Windows.Forms.CheckBox();
             this.HeightDeltaTextBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.MinimumColumeComboBox = new System.Windows.Forms.ComboBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.DatabasePathTextBox = new System.Windows.Forms.TextBox();
             this.ChooseButton = new System.Windows.Forms.Button();
-            this.radioButton6 = new System.Windows.Forms.RadioButton();
-            this.radioButton5 = new System.Windows.Forms.RadioButton();
+            this.CustomDataBaseRadioButton = new System.Windows.Forms.RadioButton();
+            this.DefaultDataBaseRadioButton = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -149,8 +149,8 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.radioButton2);
-            this.groupBox2.Controls.Add(this.radioButton1);
+            this.groupBox2.Controls.Add(this.SingleRingRadioButton);
+            this.groupBox2.Controls.Add(this.DualRingRadioButton);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.groupBox2.Location = new System.Drawing.Point(13, 126);
             this.groupBox2.Name = "groupBox2";
@@ -159,35 +159,35 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Piston Type";
             // 
-            // radioButton2
+            // SingleRingRadioButton
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.radioButton2.Location = new System.Drawing.Point(10, 53);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(91, 21);
-            this.radioButton2.TabIndex = 11;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Single Ring";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.SingleRingRadioButton.AutoSize = true;
+            this.SingleRingRadioButton.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.SingleRingRadioButton.Location = new System.Drawing.Point(10, 53);
+            this.SingleRingRadioButton.Name = "SingleRingRadioButton";
+            this.SingleRingRadioButton.Size = new System.Drawing.Size(91, 21);
+            this.SingleRingRadioButton.TabIndex = 11;
+            this.SingleRingRadioButton.TabStop = true;
+            this.SingleRingRadioButton.Text = "Single Ring";
+            this.SingleRingRadioButton.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // DualRingRadioButton
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
-            this.radioButton1.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.radioButton1.Location = new System.Drawing.Point(10, 26);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(82, 21);
-            this.radioButton1.TabIndex = 10;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Dual Ring";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.DualRingRadioButton.AutoSize = true;
+            this.DualRingRadioButton.Checked = true;
+            this.DualRingRadioButton.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.DualRingRadioButton.Location = new System.Drawing.Point(10, 26);
+            this.DualRingRadioButton.Name = "DualRingRadioButton";
+            this.DualRingRadioButton.Size = new System.Drawing.Size(82, 21);
+            this.DualRingRadioButton.TabIndex = 10;
+            this.DualRingRadioButton.TabStop = true;
+            this.DualRingRadioButton.Text = "Dual Ring";
+            this.DualRingRadioButton.UseVisualStyleBackColor = true;
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.radioButton3);
-            this.groupBox3.Controls.Add(this.radioButton4);
+            this.groupBox3.Controls.Add(this.SameRadioButton);
+            this.groupBox3.Controls.Add(this.NotSameRadioButton);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.groupBox3.Location = new System.Drawing.Point(14, 221);
             this.groupBox3.Name = "groupBox3";
@@ -196,30 +196,30 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Movable Height";
             // 
-            // radioButton3
+            // SameRadioButton
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.radioButton3.Location = new System.Drawing.Point(9, 56);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(58, 21);
-            this.radioButton3.TabIndex = 11;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "Same";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.SameRadioButton.AutoSize = true;
+            this.SameRadioButton.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.SameRadioButton.Location = new System.Drawing.Point(9, 56);
+            this.SameRadioButton.Name = "SameRadioButton";
+            this.SameRadioButton.Size = new System.Drawing.Size(58, 21);
+            this.SameRadioButton.TabIndex = 11;
+            this.SameRadioButton.TabStop = true;
+            this.SameRadioButton.Text = "Same";
+            this.SameRadioButton.UseVisualStyleBackColor = true;
             // 
-            // radioButton4
+            // NotSameRadioButton
             // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Checked = true;
-            this.radioButton4.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.radioButton4.Location = new System.Drawing.Point(9, 29);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(84, 21);
-            this.radioButton4.TabIndex = 10;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "Not Same";
-            this.radioButton4.UseVisualStyleBackColor = true;
+            this.NotSameRadioButton.AutoSize = true;
+            this.NotSameRadioButton.Checked = true;
+            this.NotSameRadioButton.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.NotSameRadioButton.Location = new System.Drawing.Point(9, 29);
+            this.NotSameRadioButton.Name = "NotSameRadioButton";
+            this.NotSameRadioButton.Size = new System.Drawing.Size(84, 21);
+            this.NotSameRadioButton.TabIndex = 10;
+            this.NotSameRadioButton.TabStop = true;
+            this.NotSameRadioButton.Text = "Not Same";
+            this.NotSameRadioButton.UseVisualStyleBackColor = true;
             // 
             // label4
             // 
@@ -233,7 +233,7 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.checkBox1);
+            this.groupBox4.Controls.Add(this.OptimizeResultCheckBox);
             this.groupBox4.Controls.Add(this.HeightDeltaTextBox);
             this.groupBox4.Controls.Add(this.label5);
             this.groupBox4.Controls.Add(this.MinimumColumeComboBox);
@@ -246,17 +246,17 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Other Options";
             // 
-            // checkBox1
+            // OptimizeResultCheckBox
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Checked = true;
-            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(138, 78);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(124, 21);
-            this.checkBox1.TabIndex = 16;
-            this.checkBox1.Text = "Optimize Results";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.OptimizeResultCheckBox.AutoSize = true;
+            this.OptimizeResultCheckBox.Checked = true;
+            this.OptimizeResultCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.OptimizeResultCheckBox.Location = new System.Drawing.Point(138, 78);
+            this.OptimizeResultCheckBox.Name = "OptimizeResultCheckBox";
+            this.OptimizeResultCheckBox.Size = new System.Drawing.Size(124, 21);
+            this.OptimizeResultCheckBox.TabIndex = 16;
+            this.OptimizeResultCheckBox.Text = "Optimize Results";
+            this.OptimizeResultCheckBox.UseVisualStyleBackColor = true;
             // 
             // HeightDeltaTextBox
             // 
@@ -303,8 +303,8 @@
             // 
             this.groupBox5.Controls.Add(this.DatabasePathTextBox);
             this.groupBox5.Controls.Add(this.ChooseButton);
-            this.groupBox5.Controls.Add(this.radioButton6);
-            this.groupBox5.Controls.Add(this.radioButton5);
+            this.groupBox5.Controls.Add(this.CustomDataBaseRadioButton);
+            this.groupBox5.Controls.Add(this.DefaultDataBaseRadioButton);
             this.groupBox5.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.groupBox5.Location = new System.Drawing.Point(148, 238);
             this.groupBox5.Name = "groupBox5";
@@ -323,6 +323,7 @@
             // 
             // ChooseButton
             // 
+            this.ChooseButton.Enabled = false;
             this.ChooseButton.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ChooseButton.Location = new System.Drawing.Point(82, 45);
             this.ChooseButton.Name = "ChooseButton";
@@ -330,31 +331,34 @@
             this.ChooseButton.TabIndex = 14;
             this.ChooseButton.Text = "Choose";
             this.ChooseButton.UseVisualStyleBackColor = true;
+            this.ChooseButton.Click += new System.EventHandler(this.ChooseButton_Click);
             // 
-            // radioButton6
+            // CustomDataBaseRadioButton
             // 
-            this.radioButton6.AutoSize = true;
-            this.radioButton6.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.radioButton6.Location = new System.Drawing.Point(6, 45);
-            this.radioButton6.Name = "radioButton6";
-            this.radioButton6.Size = new System.Drawing.Size(70, 21);
-            this.radioButton6.TabIndex = 13;
-            this.radioButton6.TabStop = true;
-            this.radioButton6.Text = "Custom";
-            this.radioButton6.UseVisualStyleBackColor = true;
+            this.CustomDataBaseRadioButton.AutoSize = true;
+            this.CustomDataBaseRadioButton.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.CustomDataBaseRadioButton.Location = new System.Drawing.Point(6, 45);
+            this.CustomDataBaseRadioButton.Name = "CustomDataBaseRadioButton";
+            this.CustomDataBaseRadioButton.Size = new System.Drawing.Size(70, 21);
+            this.CustomDataBaseRadioButton.TabIndex = 13;
+            this.CustomDataBaseRadioButton.TabStop = true;
+            this.CustomDataBaseRadioButton.Text = "Custom";
+            this.CustomDataBaseRadioButton.UseVisualStyleBackColor = true;
+            this.CustomDataBaseRadioButton.CheckedChanged += new System.EventHandler(this.dataBaseRadioButton_CheckedChanged);
             // 
-            // radioButton5
+            // DefaultDataBaseRadioButton
             // 
-            this.radioButton5.AutoSize = true;
-            this.radioButton5.Checked = true;
-            this.radioButton5.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.radioButton5.Location = new System.Drawing.Point(6, 22);
-            this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(67, 21);
-            this.radioButton5.TabIndex = 12;
-            this.radioButton5.TabStop = true;
-            this.radioButton5.Text = "Default";
-            this.radioButton5.UseVisualStyleBackColor = true;
+            this.DefaultDataBaseRadioButton.AutoSize = true;
+            this.DefaultDataBaseRadioButton.Checked = true;
+            this.DefaultDataBaseRadioButton.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.DefaultDataBaseRadioButton.Location = new System.Drawing.Point(6, 22);
+            this.DefaultDataBaseRadioButton.Name = "DefaultDataBaseRadioButton";
+            this.DefaultDataBaseRadioButton.Size = new System.Drawing.Size(67, 21);
+            this.DefaultDataBaseRadioButton.TabIndex = 12;
+            this.DefaultDataBaseRadioButton.TabStop = true;
+            this.DefaultDataBaseRadioButton.Text = "Default";
+            this.DefaultDataBaseRadioButton.UseVisualStyleBackColor = true;
+            this.DefaultDataBaseRadioButton.CheckedChanged += new System.EventHandler(this.dataBaseRadioButton_CheckedChanged);
             // 
             // Form1
             // 
@@ -397,20 +401,20 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button CalculateButton;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton SingleRingRadioButton;
+        private System.Windows.Forms.RadioButton DualRingRadioButton;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton4;
+        private System.Windows.Forms.RadioButton SameRadioButton;
+        private System.Windows.Forms.RadioButton NotSameRadioButton;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox MinimumColumeComboBox;
         private System.Windows.Forms.TextBox HeightDeltaTextBox;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox OptimizeResultCheckBox;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.RadioButton radioButton6;
-        private System.Windows.Forms.RadioButton radioButton5;
+        private System.Windows.Forms.RadioButton CustomDataBaseRadioButton;
+        private System.Windows.Forms.RadioButton DefaultDataBaseRadioButton;
         private System.Windows.Forms.Button ChooseButton;
         private System.Windows.Forms.TextBox DatabasePathTextBox;
     }

@@ -132,7 +132,30 @@ namespace Mast_Calculator
 
         private void CalculateButton_Click(object sender, EventArgs e)
         {
+            if (DefaultDataBaseRadioButton.Checked) // Revert back to default db.
+            {
+                ColumnData.Instance.resetDataFile();
+            }
+            //TODO: More...
+        }
 
+        private void ChooseButton_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openDialog = new OpenFileDialog();
+            openDialog.Filter = "txt files (*.txt)|*.txt| csv files (*.csv)|*.csv)";
+            openDialog.FilterIndex = 0;
+            if (openDialog.ShowDialog() == DialogResult.OK) // Change to cutom db
+            {
+                var selectedFile = openDialog.FileName;
+                DatabasePathTextBox.Text = selectedFile;
+                ColumnData.Instance.resetDataFile(selectedFile);
+                //TODO: Refresh UI or something else?
+            }
+        }
+
+        private void dataBaseRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            ChooseButton.Enabled = ((RadioButton)sender == CustomDataBaseRadioButton);
         }
     }
 }
