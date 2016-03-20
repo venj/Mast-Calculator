@@ -12,7 +12,7 @@ namespace Mast_Calculator
         Single = 1
     }
 
-    public enum MovableHeightRestriction
+    public enum ColumnMovableHeightRestriction
     {
         NotSame = 0,
         Same = 1
@@ -38,7 +38,7 @@ namespace Mast_Calculator
         public int MinimumColumn { get; set; }
         public int TotalHeightThreshold { get; set; }
         public bool UseMinimumColumnFromLoadOnly { get; set; }
-        public MovableHeightRestriction MovableHeightRestriction { get; set; }
+        public ColumnMovableHeightRestriction MovableHeightRestriction { get; set; }
 
         private static volatile ColumnHelper instance;
         private static object syncRoot = new Object();
@@ -121,7 +121,7 @@ namespace Mast_Calculator
                 for (int columnIndex = innerMostColumnIndex; columnIndex <= endColumnIndex; columnIndex++)
                 {
                     var columnHeightsAndMovableHeights = ColumnHeightsWithInnerMostColumnIndex(columnIndex, columnCount: columnCount, initialHeight: initialHeight);
-                    var totalHeight = TotalHeightForMovableHeightsWithInitialHeight(columnHeightsAndMovableHeights[1], initialHeight: initialHeight);
+                    var totalHeight = TotalHeightForMovableHeights(columnHeightsAndMovableHeights[1], initialHeight: initialHeight);
                     var dict = new Dictionary<string, object> {
                         [TotalHeightKey] = totalHeight,
                         [ColumnHeightsAndMovableHeightsKey] = columnHeightsAndMovableHeights,
@@ -170,7 +170,7 @@ namespace Mast_Calculator
             return theoryMaxHeight;
         }
 
-        public int TotalHeightForMovableHeightsWithInitialHeight(List<int> movableHeights, int initialHeight)
+        public int TotalHeightForMovableHeights(List<int> movableHeights, int initialHeight)
         {
             var totalHeight = initialHeight + movableHeights.Sum();
             return totalHeight;
@@ -178,8 +178,8 @@ namespace Mast_Calculator
 
         public int TotalHeightForOutterMostColumnIndex(int outterMostColumnIndex, int columnCount, int initialHeight)
         {
-            //TODO: Implementation
-            return 0;
+            var columHeightsAndMovableHeights = ColumnHeightsWithOutterMostColumnIndex(outterMostColumnIndex, columnCount: columnCount, initialHeight: initialHeight);
+            return TotalHeightForMovableHeights(columHeightsAndMovableHeights[1], initialHeight: initialHeight);
         }
 
         public int TotalHeightForInnerMostColumnIndex(int innerMostColumnIndex, int columnCount, int initialHeight)
@@ -197,7 +197,67 @@ namespace Mast_Calculator
         public List<List<int>> ColumnHeightsWithOutterMostColumnIndex(int outterMostColumnIndex, int columnCount, int initialHeight)
         {
             //TODO: Implementation
-            movableHeightResultsetForInitialHeight(1000, totalHeight: 3000, maxLoad: 9);
+            var columnHeights = new List<int>();
+            var columnHeightLimits = new List<int>();
+            var columnMovableHeights = new List<int>();
+            int innerMostColumnIndex = outterMostColumnIndex - columnCount + 1;
+            int currentColumnHeight = -1;
+            int currentColumnMovableHeight = -1;
+
+            ColumnItem previousColumn = null, currentColumn = null;
+            int commonMovableHeight, commonJointHeight;
+
+            for (int colIndex = outterMostColumnIndex; colIndex >= innerMostColumnIndex; colIndex--)
+            {
+                previousColumn = currentColumn;
+                currentColumn = ColumnData.Instance.columns[colIndex];
+
+                int? previousPistonJointHeight, previousPistonHeight;
+                int currentPistonHeight;
+                if (PistonType == PistonType.Single)
+                {
+                    previousPistonJointHeight = previousColumn?.SinglePistonJointHeight;
+                    previousPistonHeight = previousColumn?.SinglePistonHeight;
+                    currentPistonHeight = currentColumn.SinglePistonHeight;
+                }
+                else
+                {
+                    previousPistonJointHeight = previousColumn?.DualPistonJointHeight;
+                    previousPistonHeight = previousColumn?.DualPistonHeight;
+                    currentPistonHeight = currentColumn.DualPistonHeight;
+                }
+
+                columnHeightLimits.Add(currentColumn.ColumnHeightLimit);
+
+                if (colIndex == outterMostColumnIndex)
+                {
+                    currentColumnHeight = initialHeight - (columnCount - 1) * (currentColumn.CommonCapHeight + currentColumn.CommonCapJointHeight + BUFFER_THICKNESS) - currentColumn.TopCapHeight - currentColumn.BottomThickness + currentColumn.CommonCapJointHeight;
+                    if (currentColumnHeight > currentColumn.ColumnHeightLimit)
+                    {
+                        currentColumnHeight = currentColumn.ColumnHeightLimit;
+                    }
+                }
+                else if (colIndex == outterMostColumnIndex - 1)
+                {
+                    currentColumnHeight = currentColumnHeight - SPACE_BETWEEN_COLUMNS - previousColumn.BottomJointHeight - currentPistonHeight + currentColumn.CommonCapHeight + currentColumn.CommonCapJointHeight + BUFFER_THICKNESS;
+                    if (currentColumnHeight > currentColumn.ColumnHeightLimit)
+                    {
+                        currentColumnHeight = currentColumn.ColumnHeightLimit;
+                    }
+
+                    int mHeight = currentColumnHeight - currentColumn.JoinHeight - currentColumn.CommonCapJointHeight - previousColumn.CommonCapHeight - BUFFER_THICKNESS;
+
+                    if (MovableHeightRestriction == ColumnMovableHeightRestriction.NotSame)
+                    {
+
+                    }
+                }
+
+            }
+
+
+
+
 
             return new List<List<int>>();
         }
