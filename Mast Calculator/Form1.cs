@@ -137,6 +137,16 @@ namespace Mast_Calculator
                 ColumnData.Instance.resetDataFile();
             }
             //TODO: More...
+            var initialHeight = (int)(double.Parse(InitialHeightTextBox.Text) * 1000);
+            var totalHeight = (int)(double.Parse(TotalHeightTextBox.Text) * 1000);
+            var maxLoad = int.Parse(InitialHeightTextBox.Text);
+
+            // Validation
+            var helper = ColumnHelper.Instance;
+            helper.pistonType = DualRingRadioButton.Checked ? PistonType.Dule : PistonType.Single;
+            //helper.ColumnsCount = 
+
+
         }
 
         private void ChooseButton_Click(object sender, EventArgs e)

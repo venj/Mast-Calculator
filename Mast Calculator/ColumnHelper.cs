@@ -33,6 +33,10 @@ namespace Mast_Calculator
         public const int COLUMN_COUNT_MIN = 3;
         public const int COLUMN_INIT_HEIGHT_MAX = 30000;
 
+        public int UserInitialHeight { get; set; }
+        //public int UserTotalHeight { get; set; }
+        //public int UserMaxLoad { get; set; }
+
         public PistonType PistonType { get; set; }
         public int ColumnsCount { get; set; }
         public int MinimumColumn { get; set; }
@@ -138,10 +142,27 @@ namespace Mast_Calculator
         {
             var results = new List<Dictionary<string, object>>();
             int innerMostColumnIndex = LoadIndexForMaxLoad(requiredMaxLoad);
-            int[] initialHeights = { 1, 2 };
-            // TODO: Implementation.
+            int[] initialHeights = { UserInitialHeight, initialHeight };
+            int totalHeight;
+            List<List<int>> columnHeightsAndMovableHeights;
 
+            columnHeightsAndMovableHeights = ColumnHeightsWithInnerMostColumnIndex(innerMostColumnIndex, columnCount: TOTAL_COLUMNS_COUNT - innerMostColumnIndex, initialHeight: initialHeights[0]);
+            totalHeight = TotalHeightForMovableHeights(columnHeightsAndMovableHeights[1], initialHeight: initialHeights[0]);
+            results.Add(new Dictionary<string, object> {
+                [TotalHeightKey] = totalHeight,
+                [ColumnHeightsAndMovableHeightsKey] = columnHeightsAndMovableHeights,
+                [InnerMostColumnIndexKey] = innerMostColumnIndex
+            });
 
+            columnHeightsAndMovableHeights = ColumnHeightsWithInnerMostColumnIndex(innerMostColumnIndex, columnCount: TOTAL_COLUMNS_COUNT - innerMostColumnIndex, initialHeight: initialHeights[1]);
+            totalHeight = TotalHeightForMovableHeights(columnHeightsAndMovableHeights[1], initialHeight: initialHeights[1]);
+            results.Add(new Dictionary<string, object> {
+                [TotalHeightKey] = totalHeight,
+                [ColumnHeightsAndMovableHeightsKey] = columnHeightsAndMovableHeights,
+                [InnerMostColumnIndexKey] = innerMostColumnIndex,
+                [InitialHeightKey] = initialHeights[1]
+            });
+            
             return results;
         }
 
@@ -196,7 +217,6 @@ namespace Mast_Calculator
 
         public List<List<int>> ColumnHeightsWithOutterMostColumnIndex(int outterMostColumnIndex, int columnCount, int initialHeight)
         {
-            //TODO: Implementation
             var columnHeights = new List<int>();
             var columnHeightLimits = new List<int>();
             var columnMovableHeights = new List<int>();
@@ -205,7 +225,7 @@ namespace Mast_Calculator
             int currentColumnMovableHeight = -1;
 
             ColumnItem previousColumn = null, currentColumn = null;
-            int commonMovableHeight, commonJointHeight;
+            int commonMovableHeight = 0, commonJointHeight = 0;
 
             for (int colIndex = outterMostColumnIndex; colIndex >= innerMostColumnIndex; colIndex--)
             {
@@ -249,17 +269,68 @@ namespace Mast_Calculator
 
                     if (MovableHeightRestriction == ColumnMovableHeightRestriction.NotSame)
                     {
-
+                        currentColumnMovableHeight = mHeight;
+                    }
+                    else
+                    {
+                        commonMovableHeight = mHeight;
+                        commonJointHeight = currentColumn.JoinHeight;
+                    }
+                }
+                else if (colIndex == innerMostColumnIndex)
+                {
+                    if (MovableHeightRestriction == ColumnMovableHeightRestriction.NotSame)
+                    {
+                        currentColumnHeight = currentColumnHeight - SPACE_BETWEEN_COLUMNS - (int)previousPistonJointHeight - currentPistonHeight + previousColumn.CommonCapHeight + currentColumn.TopCapHeight + BUFFER_THICKNESS;
+                        if (currentColumnHeight > currentColumn.ColumnHeightLimit)
+                        {
+                            currentColumnHeight = currentColumn.ColumnHeightLimit;
+                        }
+                        currentColumnMovableHeight = commonMovableHeight - currentColumn.JoinHeight - currentColumn.TopCapHeight - previousColumn.CommonCapHeight - BUFFER_THICKNESS;
+                    }
+                    else
+                    {
+                        currentColumnHeight = commonMovableHeight + commonJointHeight + currentColumn.CommonCapJointHeight + previousColumn.CommonCapHeight + BUFFER_THICKNESS;
+                    }
+                }
+                else {
+                    if (MovableHeightRestriction == ColumnMovableHeightRestriction.NotSame)
+                    {
+                        currentColumnHeight = currentColumnHeight - SPACE_BETWEEN_COLUMNS - (int)previousPistonJointHeight - currentPistonHeight + currentColumn.CommonCapHeight + currentColumn.CommonCapJointHeight + BUFFER_THICKNESS;
+                        if (currentColumnHeight > currentColumn.ColumnHeightLimit)
+                        {
+                            currentColumnHeight = currentColumn.ColumnHeightLimit;
+                        }
+                        currentColumnMovableHeight = currentColumnHeight - currentColumn.JoinHeight - currentColumn.CommonCapJointHeight - previousColumn.CommonCapHeight + BUFFER_THICKNESS;
+                    }
+                    else
+                    {
+                        currentColumnHeight = commonMovableHeight + commonJointHeight + currentColumn.CommonCapJointHeight + previousColumn.CommonCapHeight + BUFFER_THICKNESS;
                     }
                 }
 
+                columnHeights.Add(currentColumnHeight);
+
+                int _mHeight;
+
+                if (MovableHeightRestriction == ColumnMovableHeightRestriction.NotSame)
+                {
+                    _mHeight = currentColumnMovableHeight;
+                }
+                else
+                {
+                    _mHeight = commonMovableHeight;
+                }
+                if (colIndex != outterMostColumnIndex)
+                {
+                    columnMovableHeights.Add(_mHeight);
+                }
+
             }
-
-
-
-
-
-            return new List<List<int>>();
+            
+            return new List<List<int>> {
+                columnHeights, columnMovableHeights, columnHeightLimits
+            };
         }
 
         public List<int> movableHeightResultsetForInitialHeight(int initialHeight, int totalHeight, int maxLoad)
