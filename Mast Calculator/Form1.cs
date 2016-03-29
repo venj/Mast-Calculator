@@ -143,7 +143,7 @@ namespace Mast_Calculator
 
             // Validation
             var helper = ColumnHelper.Instance;
-            helper.pistonType = DualRingRadioButton.Checked ? PistonType.Dule : PistonType.Single;
+            helper.PistonType = DualRingRadioButton.Checked ? PistonType.Dule : PistonType.Single;
             //helper.ColumnsCount = 
 
 
